@@ -23,6 +23,8 @@ This issue is only happening on windows, where drives have a letter (like `C:` o
 
 No errors, the file should be imported correctly and the console should log `Hello from the imported file!`
 
+You can see the actual successful behavior by running `npm run success` which simply compiles the code and runs node on the compiled files.
+
 ## Actual behavior
 
 ```
