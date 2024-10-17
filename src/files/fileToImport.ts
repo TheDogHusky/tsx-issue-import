@@ -1,2 +1,2 @@
-const exampleString = "This is an example string";
+const exampleString = "Hello from the imported file!";
 export default exampleString;

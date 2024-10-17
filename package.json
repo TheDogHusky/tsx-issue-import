@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "tsx src/index.ts",
-    "start:watch": "tsx watch src/index.ts"
+    "start:watch": "tsx watch src/index.ts",
+    "success": "tsc && node dist/index.js"
   },
   "dependencies": {
     "tsx": "^4.19.1"
