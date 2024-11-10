@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 
 /**
  * TSX URL Scheme error example
@@ -9,9 +9,20 @@ import { join } from "node:path";
 const main = async () => {
     const path = join(__dirname, 'files');
     const files = fs.readdirSync(path);
+
+    console.log("Using relative import");
     for (const file of files) {
-        // will throw the error: Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
-        const string = await import(`${path}/${file}`);
+        const absolutePath = `${path}/${file}`;
+        const relativePath = "./" + relative(__dirname, absolutePath).replace(/\\/g, "/");
+        const string = await import(relativePath);
+        console.log(string.default);
+    }
+    console.log();
+
+    console.log("Using absolute import with file-protocol");
+    for (const file of files) {
+        const absolutePath = `file://${path}/${file}`;
+        const string = await import(absolutePath);
         console.log(string.default);
     }
 };
